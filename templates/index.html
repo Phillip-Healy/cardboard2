@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <div class="container">
+        <!-- News Card -->
+        <h2 class="center-align green-text darken-4" id="screen_news">Latest Boardgame News</h2>
+        <div class="card large" id="news-card">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="https://i.imgur.com/E4ShGpK.png" title="Cardboard Craic Logo">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator white-text">{{ news[0].game.title() }} <i
+                     class="far fa-newspaper"></i></span>
+                <h6><a href="{{ url_for('news') }}" class="green-text darken-4">Go to News Feed</a></h6>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title white-text">{{ news[0].title.title() }} <i
+                     class="far fa-times-circle"></i></span>
+                <p>{{ news[0].text }}</p>
+                <h6><a href="{{ url_for('news') }}" class="green-text darken-4">Go to News Feed</a></h6>
+            </div>
+        </div> 
+        <!-- spotlight cards -->
+        <div class="row">
+            {% for game in games %}
+                <div class="col s12 m4">
+                    <div class="card game-card">
+                        <div class="card-image">
+                            <a href=""><img src="{{ game.img_url }}" title="source: imgur.com" /></a>
+                            <span class="card-title" id="title-pad">{{ game.name.capitalize() }}</span>
+                        </div>
+                        <div class="card-content"  id="game-content">
+                            <p>{{ game.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+{% endblock %}

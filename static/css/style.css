@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,400;1,600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+}
+
+/*  Window height calculations modified from http://martinpennock.com/blog/force-footer-bottom-page-css/ */
+#main-window {
+    min-height: calc(100vh - 200px);
+}
+
+#footer {
+    height: 200px;
+}
+
+.page-footer {
+    padding-top: 20px;
+    color: #fff;
+    width: 100%;
+}
+
+.footer-media li {
+    font-size: 28px;
+    float: left;
+    background-position: right;
+    margin-right: 12px;
+}
+
+.container {
+    position: relative;
+    height: 100%;
+}
+
+#news-card {
+    height: auto;
+}
+
+/* ----------------------------- Back to top button  */
+
+a.back-to-top {
+    display: none;
+	width: 60px;
+	height: 60px;
+	position: fixed;
+	z-index: 999;
+	right: 20px;
+    bottom: 20px;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 32px;
+    color: #fff;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+
+/* --------------------------- Add button  */
+
+.add-btn {
+    padding: 10px;
+    height: 35px;
+    line-height: 28px;
+    display: revert;
+}
+
+/* --------------------------- content adjustments */
+
+.card-title {
+    font-family: 'Poppins', sans-serif;
+    background-color: darkgreen;
+    color: #fff;
+}
+
+#title-pad {
+    padding: 4px
+}
+
+#game-content {
+    padding: 6px;
+}
+
+#profile-title {
+    margin-bottom: 50px;
+}
+
+#genre-title {
+    margin-bottom: 50px;
+}
+
+.card-action-right {
+    float: right;
+}
+
+.games {
+    margin-bottom: 15px;
+}
+
+.game-card {
+    height: 500px;
+    overflow: auto;
+}
+
+.genre-card {
+    height: 160px;
+    overflow: auto;
+}
+
+.edit-btn {
+    float: right;
+    padding: 4px;
+}
+
+@media only screen and (max-width: 992px) {
+    #mobile-logo {
+        left: 15%;
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+    }
+
+    #screen_news {
+        visibility: hidden;
+        height: 0px;
+        width: 0px;
+    }
+
+    .card-action-right {
+        float: clear;
+    }
+
+    .card-action {
+        text-align: center;
+    }
+
+    .mob-title {
+        margin-top: 0px;
+    }
+
+    .game-card {
+        height: auto;
+        min-height: 80px;
+    }
+
+    #footer {
+        height: auto;
+    }
+}

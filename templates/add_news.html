@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+        <h3 class="white-text green darken-2">Add Game</h3>
+        <hr>
+
+        <div class="row card-panel grey lighten-5">
+            <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('add_news') }}">
+                <!-- game selector -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-folder-open prefix green-text text-darken-2"></i>
+                        <select id="game" name="game" class="validate">
+                            <option value="" disabled selected>Choose Game</option>
+                                {% for game in games %}
+                                    <option value="{{ game.name }}">{{ game.name.title() }}</option>
+                                {% endfor %}
+                        </select>
+                        <label>Game Name</label>
+                    </div>
+                </div>
+                <!-- genre selector -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-folder-open prefix green-text text-darken-2"></i>
+                        <select id="genre" name="genre" class="validate">
+                            <option value="" disabled selected>Choose Genre</option>
+                                {% for genre in genres %}
+                                    <option value="{{ genre.name }}">{{ genre.name.capitalize() }}</option>
+                                {% endfor %}
+                        </select>
+                        <label>Game Genre</label>
+                    </div>
+                </div>
+                <!-- Image storage -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-image prefix green-text text-darken-2"></i>
+                        <input id="title" name="title" type="text" class="validate" required>
+                        <label for="title">News Title</label>
+                    </div>
+                </div>
+                <!-- description box -->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-align-left prefix green-text text-darken-2"></i>
+                        <textarea id="text" name="text" minlength="5" maxlength="3000"
+                            class="materialize-textarea validate"></textarea>
+                        <label for="text">News Content</label>
+                    </div>
+                </div>
+                <!-- submit button -->
+                <div class="row">
+                    <div class="col s12 center-align">
+                        <button type="submit" class="btn-large green darken-2">
+                            Add News
+                            <i class="fas fa-plus-square right"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

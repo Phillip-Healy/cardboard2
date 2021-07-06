@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="text-shadow white-text green darken-2">Edit Game</h3>
+
+    <div class="row card-panel grey lighten-5">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('edit_game', game_id=game._id) }}">
+            <!-- category selector -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-folder-open prefix green-text text-darken-2"></i>
+                    <select id="genre" name="genre" class="validate" required>
+                        <option value="" disabled>Choose Genre</option>
+                        {% for genre in genres %}
+                            {% if genre.name == game.genre %}
+                                <option value="{{ genre.name }}" selected>{{ genre.name.capitalize() }}</option>
+                            {% else %}
+                                <option value="{{ genre.name }}">{{ genre.name.capitalize() }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <label>Game Genre</label>
+                </div>
+            </div>
+            <!-- game name -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-pencil-alt prefix green-text text-darken-2"></i>
+                    <input id="name" name="name" type="text" minlength="5"
+                        value="{{ game.name }}" maxlength="30" class="validate" required>
+                    <label for="name">Game Name</label>
+                </div>
+            </row>
+            <!-- description box -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-align-left prefix green-text text-darken-2"></i>
+                    <textarea id="description" name="description" minlength="5"
+                        maxlength="300" class="materialize-textarea validate">
+                    {{- game.description -}}
+                    </textarea>
+                    <label for="description">Description of Game</label>
+                </div>
+            </div>
+            <!-- game image -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-pencil-alt prefix green-text text-darken-2"></i>
+                    <input id="img_url" name="img_url" type="text" minlength="5"
+                        value="{{ game.img_url }}" maxlength="300" class="validate" required>
+                    <label for="img_url">Image Url</label>
+                </div>
+            </row>
+            <!-- affilliate link -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="fas fa-pencil-alt prefix green-text text-darken-2"></i>
+                    <input id="affilliate_link" name="affilliate_link" type="text"
+                        value="{{ game.affilliate_link }}" maxlength="300" class="validate" required>
+                    <label for="affilliate_link">Affilliate Link</label>
+                </div>
+            </row>
+            <!-- cancel/submit button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <!-- cancel button-->
+                    <a href="{{ url_for('games') }}" class="btn-large red">
+                        Cancel <i class="fas fa-times-circle right"></i>
+                    </a>
+                    <!-- submit button -->
+                    <button type="submit" class="btn-large green darken-2">
+                        Edit Game
+                        <i class="fas fa-edit right"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        type="text/css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block styles %}
+    {% endblock %}
+    <title>Cardboard Craic</title>
+</head>
+<body>
+    <div id="main-window">
+        <header>
+            <!-- Navbar -->
+            <div class="navbar-fixed">
+                <nav>
+                    <div class="nav-wrapper green darken-2">
+                        <a href="{{ url_for('index') }}" class="brand-logo" id="mobile-logo">Cardboard Craic</a>
+                        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
+                        <ul class="right hide-on-med-and-down">
+                            <li><a href="{{ url_for('index') }}">Home</a></li>
+                            <li><a href="{{ url_for('news') }}">News</a></li>
+                            <li><a href="{{ url_for('games') }}">Games</a></li>
+                            <li><a href="{{ url_for('genres') }}">Genres</a></li>
+                            <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                            {% if session.user %}
+                                <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                                <li><a href="{{ url_for('profile', username=session['user']) }}">My Profile</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('register') }}">Register</a></li>
+                                <li><a href="{{ url_for('login') }}">Log in</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <!--- Mobile Sidenav --->
+            <ul class="sidenav" id="mobile-demo">
+                <li>
+                    <h4 class="center-align green darken-3 white-text">Cardboard Craic</h4>
+                </li>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('news') }}">News</a></li>
+                <li><a href="{{ url_for('games') }}">Games</a></li>
+                <li><a href="{{ url_for('genres') }}">Genres</a></li>
+                <li><a href="{{ url_for('reviews') }}">Reviews</a></li>
+                {% if session.user %}
+                    <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                    <li><a href="{{ url_for('profile', username=session['user']) }}">My Profile</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                    <li><a href="{{ url_for('login') }}">Log in</a></li>
+                {% endif %}
+            </ul>
+
+        </header>
+
+        <section>
+            <!-- flash messages -->
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="row flashes">
+                <h4 class="center-align green lighten-2">{{ message }}</h4>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <!-- Back to top button modified from https://www.templatemonster.com/blog/back-to-top-button-css-jquery/ -->
+            <a href="#" class="back-to-top green darken-1"><i class="fas fa-chevron-up"></i></a>
+        </section>
+
+            {% block content %}
+            {% endblock %}
+    </div>
+        <footer class="page-footer green darken-2" id="footer">
+                <div class="row">
+                    <div class="col l6 s12">
+                        <h5 class="white-text">Cardboard Craic</h5>
+                        <p class="grey-text text-lighten-4">Cardboard Craic is the tabletop devision of Hammock Software Games.
+
+                        </p>
+                    </div>
+                    <div class="col l4 offset-l2 s12">
+                        <h5 class="white-text">Social Media</h5>
+                        <ul class="footer-media">
+                            <li><a class="grey-text text-lighten-3" href="https://www.facebook.com/Hammock-Software-Games-109417134134446"><i class="fab fa-facebook-square"></i></a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.twitter.com"><i class="fab fa-twitter-square"></i></a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://www.patreon.com"><i class="fab fa-patreon"></i></a></li>
+                            <li><a class="grey-text text-lighten-3" href="https://github.com/Phillip-Healy"><i class="fab fa-github-square"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            <div class="footer-copyright">
+                <div class="container">
+                    © 2021 Copyright Hammock Software Games. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+    <!--- Jquery minified CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

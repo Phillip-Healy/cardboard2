@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+    
+    <div class="container">
+        <h3 class="center-align">Register</h3>
+
+        <div class="row">
+            <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('register') }}">
+                <div class="card-panel">
+                    <!-- username -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="fas fa-user-plus prefix green-text text-darken-2"></i>
+                            <input id="username" name="username" type="text" minlength="5"
+                            maxlength="20" pattern="^[a-zA-Z0-9]{5,20}$" class="validate" required>
+                            <label for="username" style="font-size: xx-small;">Username 5-20 chars, no spaces or symbols.</label>
+                        </div>
+                    </div>
+                    <!-- Password -->
+                    <div class="row">
+                        <div class="input-field col s12">
+                        <i class="fas fa-user-lock prefix green-text text-darken-2"></i>
+                        <input id="password" name="password" type="password" minlength="5"
+                            maxlength="20" pattern="^[a-zA-Z0-9]{5,20}$" class="validate" required>
+                        <label for="password" style="font-size: xx-small;">Password 5-20 chars, no spaces or symbols.</label>
+                        </div>
+                    </div>
+                    <!-- Register -->
+                    <button type="submit" class="col s12 btn-large green darken-2">
+                        Register <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <!-- Redirect to login-->
+        <div class="row">
+            <div class="col s12">
+                <p class="center-align">
+                    Already Registered?
+                    <a href="{{ url_for('login') }}" class="green-text text-darken-2">Login Here</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
+                <div class="card-panel">
+                    <h3 class="center-align mob-title green-text text-darken-2">
+                        {{ username.capitalize() }}'s Profile 
+                    </h3>
+                    <a href="{{ url_for('add_game') }}" class="btn-large add-btn white-text green darken-2">New Review</a>
+                </div>
+                <!-- User Review Cards -->
+                <div class="row">
+                    <div class="col s12 m12" id="profile-title">
+                        <h4 class="center-align green-text text-darken-2">
+                            {{ username.capitalize() }}'s Reviews 
+                        </h4>
+                        <hr>
+                    </div>
+                    {% for review in reviews %}
+                        <div class="col s12 m6">
+                            <div class="card">
+                                <div class="card-image">
+                                    <span class="card-title" id="title-pad">{{ review.game.title() }}</span>
+                                    <a href="{{ url_for('edit_review', review_id=review._id) }}" class="btn-med edit-btn white-text green darken-2">Edit</a>
+                                    <a href="{{ url_for('delete_review', review_id=review._id) }}" class="btn-med edit-btn white-text red darken-2">Delete</a>
+                                </div>
+                                <div class="card-content">
+                                    <p>{{ review.content }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
