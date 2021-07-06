@@ -121,7 +121,6 @@ def add_game():
             "genre": request.form.get("genre"),
             "description": request.form.get("description"),
             "img_url": request.form.get("img_url"),
-            "affiliate_link": request.form.get("img_url"),
             "created_by": session["user"],
             "date": datetime.now()
         }
@@ -141,7 +140,6 @@ def edit_game(game_id):
             "genre": request.form.get("genre"),
             "description": request.form.get("description"),
             "img_url": request.form.get("img_url"),
-            "affilliate_link": request.form.get("affilliate_link"),
             "created_by": session["user"],
             "date": datetime.now()
         }
